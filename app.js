@@ -5,6 +5,9 @@ const app = express();
 //設定伺服器變數
 const port = 3000;
 
+//載入外部資料restaurants.json
+const restaurants = require("./restaurants.json");
+
 // 載入handlebares
 const expressHandlebars = require("express-handlebars");
 const exhbs = expressHandlebars.create({
@@ -21,11 +24,18 @@ app.set("view engine", "handlebars");
 
 //路由設定
 app.get("/", (req, res) => {
-  res.render("index");
+  restaurantList = restaurants.results;
+  res.render("index", { restaurantList: restaurantList });
 });
 
 app.get("/restaurants/:restaurant_id", (req, res) => {
-  res.render("show");
+  console.log(typeof req.params.restaurant_id);
+
+  const restaurant = restaurants.results.find((item) => {
+    return req.params.restaurant_id === item.id.toString();
+  });
+  console.log("選擇的元素", restaurant);
+  res.render("show", { restaurant });
 });
 
 //啟動伺服器
