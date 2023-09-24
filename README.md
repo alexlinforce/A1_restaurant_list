@@ -34,7 +34,7 @@ npm run start
 ## 開發工具
 
 - Node.js 18.16.0
-- Express 4.16.4
-- Express-Handlebars 3.0.0
+- Express 4.18.2
+- Express-Handlebars 7.1.2
 - Bootstrap 5.1.3
 - Font-awesome 6.4.0
