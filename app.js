@@ -24,7 +24,7 @@ app.set("view engine", "handlebars");
 
 //路由設定
 app.get("/", (req, res) => {
-  restaurantList = restaurants.results;
+  const restaurantList = restaurants.results;
   res.render("index", { restaurantList: restaurantList });
 });
 
@@ -36,6 +36,21 @@ app.get("/restaurants/:restaurant_id", (req, res) => {
   });
   console.log("選擇的元素", restaurant);
   res.render("show", { restaurant });
+});
+
+app.get("/search", (req, res) => {
+  console.log(req.query.keyword.trim());
+  if (!req.query.keyword) {
+    return res.redirect("/");
+  }
+  const keyword = req.query.keyword.trim().toLowerCase();
+  const restaurantList = restaurants.results;
+  const filterRestaurantsData = restaurantList.filter(
+    (data) =>
+      data.name.toLowerCase().includes(keyword) ||
+      data.category.includes(keyword)
+  );
+  res.render("index", { restaurantList: filterRestaurantsData, keyword });
 });
 
 //啟動伺服器
