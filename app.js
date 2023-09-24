@@ -45,12 +45,12 @@ app.get("/search", (req, res) => {
   }
   const keyword = req.query.keyword.trim().toLowerCase();
   const restaurantList = restaurants.results;
-  const filterRestaurantsData = restaurantList.filter(
-    (data) =>
-      data.name.toLowerCase().includes(keyword) ||
-      data.category.includes(keyword)
+  const filterRestaurantsItem = restaurantList.filter(
+    (item) =>
+      item.name.toLowerCase().includes(keyword) ||
+      item.category.includes(keyword)
   );
-  res.render("index", { restaurantList: filterRestaurantsData, keyword });
+  res.render("index", { restaurantList: filterRestaurantsItem, keyword });
 });
 
 //啟動伺服器
