@@ -1,7 +1,7 @@
 # 專案名稱
 
 - 我的餐廳清單
-  ![image](restaurantIndexPage_photo.jpg)
+  ![image](restaurantIndexPage_photo.png)
 
 ## 專案介紹
 
